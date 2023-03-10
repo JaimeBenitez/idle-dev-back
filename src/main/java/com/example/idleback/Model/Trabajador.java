@@ -33,7 +33,7 @@ public class Trabajador implements Serializable {
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name="id_partida")
+    @JoinColumn(name="id_empresa")
     private Empresa_partida empresa;
 
     @JsonBackReference
