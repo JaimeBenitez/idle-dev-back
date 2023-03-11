@@ -1,5 +1,6 @@
 package com.example.idleback.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,11 +14,12 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_usuario;
+    private Long id;
 
     @OneToOne
     @JoinColumn(name = "id_partida", referencedColumnName = "id")
-    private Partida partida;
+    @JsonBackReference
+    private Partida partida = null;
 
     private String nombre;
 

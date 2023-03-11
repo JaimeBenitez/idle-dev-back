@@ -23,15 +23,15 @@ public class Lenguaje {
 
     private String nombre;
 
-    private Long beneficio_base;
+    private Float beneficio_base;
 
     private Float ratio_incremento;
 
-    private Long dinero_desbloqueo;
+    private Float dinero_desbloqueo;
 
     private String mensaje;
 
-    private Long logo;
+    private String logo;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "lenguaje")
@@ -39,7 +39,7 @@ public class Lenguaje {
 
     @JsonManagedReference
     @OneToMany(mappedBy = "lenguaje")
-    private List<Lenguaje_partida> mejoras = new ArrayList<>();
+    private List<Mejora> mejoras = new ArrayList<>();
 
     @JsonManagedReference
     @OneToMany(mappedBy = "lenguaje")
