@@ -39,7 +39,7 @@ public class Lenguaje {
 
     @JsonManagedReference
     @OneToMany(mappedBy = "lenguaje")
-    private List<Lenguaje_partida> mejoras = new ArrayList<>();
+    private List<Mejora> mejoras = new ArrayList<>();
 
     @JsonManagedReference
     @OneToMany(mappedBy = "lenguaje")
