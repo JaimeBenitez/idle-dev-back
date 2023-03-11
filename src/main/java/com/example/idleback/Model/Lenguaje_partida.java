@@ -32,5 +32,7 @@ public class Lenguaje_partida {
     private Boolean desbloqueado;
 
     private Long cantidad;
+    
+    private Float coste_actual
 
 }
