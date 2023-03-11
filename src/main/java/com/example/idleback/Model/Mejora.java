@@ -33,4 +33,10 @@ public class Mejora {
     @Column(name="nivel_desbloqueo")
     private Nivel  nivel_desbloqueo;
 
+    private Float mejora_generacion;
+
+    private Float descuento_compra;
+
+    private Float extra_pa;
+
 }

@@ -35,6 +35,4 @@ public class Lenguaje_partida {
     
     private Float coste_actual;
 
-    private Float coste_actual;
-
 }

@@ -4,7 +4,7 @@ import com.example.idleback.Dto.LenguajeDTO;
 import com.example.idleback.Dto.converter.LenguajeDTOConverter;
 import com.example.idleback.Error.LenguajeNotFoundException;
 import com.example.idleback.Model.Lenguaje;
-import com.example.idleback.Model.Usuario;
+import com.example.idleback.Model.Mejora;
 import com.example.idleback.Repositorios.LenguajeRepositorio;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -52,5 +52,17 @@ public class LenguajeController {
 
         return lenguajeRepositorio.findById(id)
                 .orElseThrow(() -> new LenguajeNotFoundException(id));
+    }
+
+    /**
+     * Obtenemos las mejoras de un lenguaje usando su ID
+     *
+     * @param id
+     * @return Error 404 si no encuentra el lenguaje
+     */
+    @GetMapping("/lenguaje/{id}/mejoras")
+    public List<Mejora> getTeamMembers(@PathVariable Long id){
+        Lenguaje lenguaje = lenguajeRepositorio.findById(id).orElseThrow(() -> new LenguajeNotFoundException(id));
+        return lenguaje.getMejoras();
     }
 }

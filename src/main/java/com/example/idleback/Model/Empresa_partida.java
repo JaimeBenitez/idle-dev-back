@@ -33,6 +33,8 @@ public class Empresa_partida {
 
     private Long nivel_actual;
 
+    private Boolean desbloqueada;
+
     @JsonManagedReference
     @OneToMany(mappedBy = "empresa")
     private List<Trabajador> trabajador = new ArrayList<>();
