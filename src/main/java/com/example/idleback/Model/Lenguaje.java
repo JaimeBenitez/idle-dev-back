@@ -31,7 +31,7 @@ public class Lenguaje {
 
     private String mensaje;
 
-    private Long logo;
+    private String logo;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "lenguaje")
