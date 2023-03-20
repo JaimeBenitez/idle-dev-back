@@ -1,4 +1,4 @@
-package com.example.idleback.Dto;
+package com.example.idleback.Dto.usuario;
 
 import lombok.Getter;
 import lombok.Setter;

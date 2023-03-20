@@ -31,11 +31,11 @@ public class Empresa_partida {
     @JoinColumn(name="id_partida")
     private Partida partida;
 
-    private Long nivel_actual;
+    private Long nivel_actual = 0L;
 
-    private Boolean desbloqueada;
+    private Boolean desbloqueada = false;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "empresa")
-    private List<Trabajador> trabajador = new ArrayList<>();
+    private List<Trabajador> trabajadores = new ArrayList<>();
 }

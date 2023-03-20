@@ -1,4 +1,4 @@
-package com.example.idleback.Dto;
+package com.example.idleback.Dto.lenguaje;
 
 import lombok.Getter;
 import lombok.Setter;

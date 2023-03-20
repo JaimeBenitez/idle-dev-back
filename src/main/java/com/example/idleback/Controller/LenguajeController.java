@@ -1,6 +1,6 @@
 package com.example.idleback.Controller;
 
-import com.example.idleback.Dto.LenguajeDTO;
+import com.example.idleback.Dto.lenguaje.LenguajeDTO;
 import com.example.idleback.Dto.converter.LenguajeDTOConverter;
 import com.example.idleback.Error.LenguajeNotFoundException;
 import com.example.idleback.Model.Lenguaje;
@@ -61,7 +61,7 @@ public class LenguajeController {
      * @return Error 404 si no encuentra el lenguaje
      */
     @GetMapping("/lenguaje/{id}/mejoras")
-    public List<Mejora> getTeamMembers(@PathVariable Long id){
+    public List<Mejora> getLanguageUpgrades(@PathVariable Long id){
         Lenguaje lenguaje = lenguajeRepositorio.findById(id).orElseThrow(() -> new LenguajeNotFoundException(id));
         return lenguaje.getMejoras();
     }

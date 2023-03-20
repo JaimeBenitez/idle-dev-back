@@ -1,4 +1,4 @@
-package com.example.idleback.Dto;
+package com.example.idleback.Dto.empresa;
 
 import lombok.Getter;
 import lombok.Setter;

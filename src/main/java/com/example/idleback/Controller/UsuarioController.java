@@ -1,7 +1,7 @@
 package com.example.idleback.Controller;
 
-import com.example.idleback.Dto.CrearUsuarioDTO;
-import com.example.idleback.Dto.UsuarioDTO;
+import com.example.idleback.Dto.usuario.CrearUsuarioDTO;
+import com.example.idleback.Dto.usuario.UsuarioDTO;
 import com.example.idleback.Dto.converter.UsuarioDTOConverter;
 import com.example.idleback.Error.UsuarioNotFoundException;
 import com.example.idleback.Model.Partida;

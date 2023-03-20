@@ -2,12 +2,14 @@ package com.example.idleback.Model;
 
 import com.example.idleback.Enum.Nivel;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -38,5 +40,9 @@ public class Mejora {
     private Float descuento_compra;
 
     private Float extra_pa;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "mejora")
+    private List<Trabajador_mejora> trabajadores;
 
 }

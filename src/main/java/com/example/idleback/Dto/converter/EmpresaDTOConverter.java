@@ -1,9 +1,7 @@
 package com.example.idleback.Dto.converter;
 
-import com.example.idleback.Dto.EmpresaDTO;
-import com.example.idleback.Dto.MejoraDTO;
+import com.example.idleback.Dto.empresa.EmpresaDTO;
 import com.example.idleback.Model.Empresa;
-import com.example.idleback.Model.Mejora;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

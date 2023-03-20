@@ -1,8 +1,6 @@
 package com.example.idleback.Dto.converter;
 
-import com.example.idleback.Dto.LenguajeDTO;
-import com.example.idleback.Dto.MejoraDTO;
-import com.example.idleback.Model.Lenguaje;
+import com.example.idleback.Dto.mejora.MejoraDTO;
 import com.example.idleback.Model.Mejora;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

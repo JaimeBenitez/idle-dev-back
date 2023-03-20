@@ -1,6 +1,6 @@
 package com.example.idleback.Controller;
 
-import com.example.idleback.Dto.MejoraDTO;
+import com.example.idleback.Dto.mejora.MejoraDTO;
 import com.example.idleback.Dto.converter.MejoraDTOConverter;
 import com.example.idleback.Error.MejoraNotFoundException;
 import com.example.idleback.Model.Mejora;
@@ -28,7 +28,7 @@ public class MejoraController {
      * @return lista de mejoras
      */
     @GetMapping("/mejoras")
-    public ResponseEntity<List<?>> getAllImprovements(){
+    public ResponseEntity<List<?>> getAllUpgrades(){
         List<Mejora> improvements = mejoraRepositorio.findAll();
         if(improvements.isEmpty()) {
             return ResponseEntity.noContent().build();
@@ -46,7 +46,7 @@ public class MejoraController {
      * @return Error 404 si no encuentra la mejora
      */
     @GetMapping("mejora/{id}")
-    public Mejora getLanguageById(@PathVariable Long id){
+    public Mejora getUpgradeById(@PathVariable Long id){
 
         return mejoraRepositorio.findById(id)
                 .orElseThrow(() -> new MejoraNotFoundException(id));

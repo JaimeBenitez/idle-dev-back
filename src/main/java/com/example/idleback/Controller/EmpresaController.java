@@ -1,6 +1,6 @@
 package com.example.idleback.Controller;
 
-import com.example.idleback.Dto.EmpresaDTO;
+import com.example.idleback.Dto.empresa.EmpresaDTO;
 
 import com.example.idleback.Dto.converter.EmpresaDTOConverter;
 import com.example.idleback.Error.EmpresaNotFoundException;
