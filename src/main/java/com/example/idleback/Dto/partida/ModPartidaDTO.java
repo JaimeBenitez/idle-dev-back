@@ -7,6 +7,5 @@ import lombok.Setter;
 public class ModPartidaDTO {
 
     private Float dinero;
-    private Float puntos_aprendizaje;
 
 }

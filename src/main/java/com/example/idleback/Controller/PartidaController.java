@@ -85,7 +85,6 @@ public class PartidaController {
 
         return partidaRepositorio.findById(id).map(a -> {
             a.setDinero(nuevo.getDinero());
-            a.setPuntos_aprendizaje(nuevo.getPuntos_aprendizaje());
             return partidaRepositorio.save(a);
         }).orElseThrow(() -> new PartidaNotFoundException(id));
     }

@@ -23,8 +23,6 @@ public class Partida {
 
     private Float dinero = 0f;
 
-    private Float puntos_aprendizaje = 0f;
-
     @OneToOne( mappedBy = "partida")
     private Usuario usuario;
 

@@ -12,6 +12,8 @@ public class EmpresaDTO {
 
     private Float multiplica_ganancia;
 
+    private Long ranuras_base;
+
     private String requerimiento;
 
 

@@ -22,4 +22,6 @@ public class MejoraDTO {
 
     private Float extra_pa;
 
+    private String logo;
+
 }

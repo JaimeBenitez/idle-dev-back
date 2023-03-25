@@ -27,6 +27,8 @@ public class Empresa {
 
     private String requerimiento;
 
+    private Long ranuras_base;
+
     @JsonManagedReference
     @OneToMany(mappedBy = "empresa")
     private List<Empresa_partida> partidas = new ArrayList<>();

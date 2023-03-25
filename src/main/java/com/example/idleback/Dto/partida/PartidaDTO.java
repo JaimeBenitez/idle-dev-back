@@ -11,7 +11,7 @@ public class PartidaDTO {
 
     private Float dinero;
 
-    private String puntos_aprendizaje;
+
 
 
 

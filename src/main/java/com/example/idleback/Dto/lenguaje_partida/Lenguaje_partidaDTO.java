@@ -10,9 +10,6 @@ public class Lenguaje_partidaDTO {
 
     private Float partidaDinero;
 
-    private Float partidaPuntos_aprendizaje;
-
-
     private String lenguajeNombre;
 
     private Boolean desbloqueado;

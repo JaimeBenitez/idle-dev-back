@@ -41,6 +41,8 @@ public class Mejora {
 
     private Float extra_pa;
 
+    private String logo;
+
     @JsonManagedReference
     @OneToMany(mappedBy = "mejora")
     private List<Trabajador_mejora> trabajadores;

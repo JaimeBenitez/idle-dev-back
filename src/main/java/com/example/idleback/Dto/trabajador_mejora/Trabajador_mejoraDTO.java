@@ -18,6 +18,8 @@ public class Trabajador_mejoraDTO {
 
     private Float mejoraExtra_pa;
 
+    private String mejoraLogo;
+
 
 
 
