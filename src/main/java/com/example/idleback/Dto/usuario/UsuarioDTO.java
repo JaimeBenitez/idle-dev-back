@@ -12,6 +12,8 @@ public class UsuarioDTO {
 
     private String nombre;
 
+    private String email;
+
     private String contrasenia;
 
     private String avatar;

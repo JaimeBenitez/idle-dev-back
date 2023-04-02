@@ -10,6 +10,8 @@ public class CrearUsuarioDTO {
 
     private String nombre;
 
+    private String email;
+
     private String contrasenia;
 
     private String avatar;

@@ -73,6 +73,7 @@ public class UsuarioController {
         }
         nUsuario.setPartida(partida);
         nUsuario.setNombre(nuevo.getNombre());
+        nUsuario.setEmail(nuevo.getEmail());
         nUsuario.setContrasenia(nuevo.getContrasenia());
         nUsuario.setAvatar(nuevo.getAvatar());
 
@@ -99,6 +100,7 @@ public class UsuarioController {
         return usuarioRepositorio.findById(id).map(u -> {
             u.setPartida(nPartida);
             u.setNombre(nuevo.getNombre());
+            u.setEmail(nuevo.getEmail());
             u.setContrasenia(nuevo.getContrasenia());
             u.setAvatar(nuevo.getAvatar());
             return usuarioRepositorio.save(u);
