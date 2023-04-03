@@ -3,7 +3,8 @@ package com.example.idleback.Controller;
 import com.example.idleback.Dto.usuario.CrearUsuarioDTO;
 import com.example.idleback.Dto.usuario.UsuarioDTO;
 import com.example.idleback.Dto.converter.UsuarioDTOConverter;
-import com.example.idleback.Error.UsuarioNotFoundException;
+import com.example.idleback.Error.UsuarioIdNotFoundException;
+import com.example.idleback.Error.UsuarioNameNotFoundException;
 import com.example.idleback.Model.Partida;
 import com.example.idleback.Model.Usuario;
 import com.example.idleback.Repositorios.PartidaRepositorio;
@@ -46,14 +47,18 @@ public class UsuarioController {
     /**
      * Obtenemos un usuario en base a su ID
      *
-     * @param id
+     * @param nombre
      * @return Error 404 si no encuentra el usuario
      */
-    @GetMapping("usuario/{id}")
-    public Usuario getUserById(@PathVariable Long id){
-
-        return usuarioRepositorio.findById(id)
-                .orElseThrow(() -> new UsuarioNotFoundException(id));
+    @GetMapping("usuario/{nombre}")
+    public Usuario getUserById(@PathVariable String nombre){
+        Usuario user = usuarioRepositorio.findByNombre(nombre);
+        if(user == null){
+            throw new UsuarioNameNotFoundException(nombre);
+        }
+        else{
+            return user;
+        }
     }
 
     /**
@@ -104,7 +109,7 @@ public class UsuarioController {
             u.setContrasenia(nuevo.getContrasenia());
             u.setAvatar(nuevo.getAvatar());
             return usuarioRepositorio.save(u);
-        }).orElseThrow(() -> new UsuarioNotFoundException(id));
+        }).orElseThrow(() -> new UsuarioIdNotFoundException(id));
     }
 
     //No esta contemplada la posibilidad de borrar usuarios

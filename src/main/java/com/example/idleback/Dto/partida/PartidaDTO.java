@@ -7,6 +7,8 @@ import lombok.Setter;
 public class PartidaDTO {
 
 
+    private Long id;
+
     private String usuarioNombre;
 
     private Float dinero;

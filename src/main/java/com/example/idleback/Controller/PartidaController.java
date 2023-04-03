@@ -1,14 +1,9 @@
 package com.example.idleback.Controller;
 
 import com.example.idleback.Dto.converter.PartidaDTOConverter;
-import com.example.idleback.Dto.empresa_partida.Empresa_partidaDTO;
-import com.example.idleback.Dto.lenguaje_partida.CrearLenguaje_partidaDTO;
 import com.example.idleback.Dto.partida.ModPartidaDTO;
 import com.example.idleback.Dto.partida.PartidaDTO;
-import com.example.idleback.Dto.usuario.CrearUsuarioDTO;
-import com.example.idleback.Error.EmpresaNotFoundException;
 import com.example.idleback.Error.PartidaNotFoundException;
-import com.example.idleback.Error.UsuarioNotFoundException;
 import com.example.idleback.Model.*;
 import com.example.idleback.Repositorios.PartidaRepositorio;
 import lombok.AllArgsConstructor;
