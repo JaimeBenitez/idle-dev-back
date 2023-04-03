@@ -45,19 +45,29 @@ public class UsuarioController {
         }
     }
     /**
-     * Obtenemos un usuario en base a su ID
+     * Obtenemos un usuario en base a su nombre
      *
      * @param nombre
      * @return Error 404 si no encuentra el usuario
      */
     @GetMapping("usuario/{nombre}")
-    public Usuario getUserById(@PathVariable String nombre){
+    public UsuarioDTO getUserById(@PathVariable String nombre){
         Usuario user = usuarioRepositorio.findByNombre(nombre);
         if(user == null){
             throw new UsuarioNameNotFoundException(nombre);
         }
         else{
-            return user;
+            //Para poder mostrar la id de partida que luego usaremos para sacar todos los datos, es necesario que
+            //en este endpoint saque el DTO en lugar del usuario individual
+            UsuarioDTO DTOUser = new UsuarioDTO();
+            DTOUser.setId(user.getId());
+            DTOUser.setPartidaId(user.getPartida().getId());
+            DTOUser.setNombre(user.getNombre());
+            DTOUser.setEmail(user.getEmail());
+            DTOUser.setContrasenia(user.getContrasenia());
+            DTOUser.setAvatar(user.getAvatar());
+
+            return DTOUser;
         }
     }
 
