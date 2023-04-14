@@ -11,11 +11,6 @@ public class Empresa_partidaDTO {
 
     private Long partidaId;
 
-    private Float partidaDinero;
-
-    private Float partidaPuntos_aprendizaje;
-
-
     private String empresaNombre;
 
     private Long nivel_actual;

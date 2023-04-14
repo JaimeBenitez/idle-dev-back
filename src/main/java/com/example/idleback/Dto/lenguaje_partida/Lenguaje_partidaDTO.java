@@ -6,6 +6,8 @@ import lombok.Setter;
 @Getter @Setter
 public class Lenguaje_partidaDTO {
 
+    private Long id;
+
     private Long partidaId;
 
     private Float partidaDinero;
