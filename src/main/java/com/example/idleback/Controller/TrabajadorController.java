@@ -49,6 +49,26 @@ public class TrabajadorController {
     }
 
     /**
+     * Obtenemos todos los trabajadores de una partida
+     *
+     * @param partidaId
+     * @return lista de trabajadores
+     *
+     */
+    @GetMapping("/trabajadores/{partidaId}")
+    public ResponseEntity<List<?>> getAllWorkersByGame(@PathVariable Long partidaId){
+        List<Trabajador> workers = trabajadorRepositorio.findByPartida(partidaRepositorio.findById(partidaId).orElse(null));
+        if(workers.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            List<TrabajadorDTO> dtoList =
+                    workers.stream().map(trabajadorDTOConverter::convertToDTO).collect(Collectors.toList());
+            return ResponseEntity.ok(dtoList);
+        }
+    }
+
+
+    /**
      * Obtenemos un trabajador en base a su ID
      *
      * @param id
