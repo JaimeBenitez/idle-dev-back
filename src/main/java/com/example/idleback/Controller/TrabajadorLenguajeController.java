@@ -39,13 +39,13 @@ public class TrabajadorLenguajeController {
      */
     @GetMapping("trabajador/{id}/lenguajes")
     public ResponseEntity<List<?>> getLanguagesByWorker(@PathVariable Long id){
-        List<Trabajador_lenguaje> trabajadoresPorLenguaje = trabajadorLenguajeRepositorio.findAllByLenguaje_Id(id);
+        List<Trabajador_lenguaje> lenguajesPorTrabajador = trabajadorLenguajeRepositorio.findAllByTrabajador_Id(id);
 
-        if(trabajadoresPorLenguaje.isEmpty()){
+        if(lenguajesPorTrabajador.isEmpty()){
             throw new LenguajeNotFoundException(id);
         }else {
             List<Trabajador_lenguajeDTO> dtoList =
-                    trabajadoresPorLenguaje.stream().map(trabajadorLenguajeDTOConverter::convertToDTO).collect(Collectors.toList());
+                    lenguajesPorTrabajador.stream().map(trabajadorLenguajeDTOConverter::convertToDTO).collect(Collectors.toList());
             return ResponseEntity.ok(dtoList);
         }
     }
@@ -58,13 +58,13 @@ public class TrabajadorLenguajeController {
      */
     @GetMapping("lenguaje/{id}/trabajadores")
     public ResponseEntity<List<?>> getWorkersByLanguage(@PathVariable Long id){
-        List<Trabajador_lenguaje> lenguajesPorTrabajador = trabajadorLenguajeRepositorio.findAllByTrabajador_Id(id);
+        List<Trabajador_lenguaje> trabajadoresPorLenguaje = trabajadorLenguajeRepositorio.findAllByLenguaje_Id(id);
 
-        if(lenguajesPorTrabajador.isEmpty()){
+        if(trabajadoresPorLenguaje.isEmpty()){
             throw new TrabajadorNotFoundException(id);
         }else {
             List<Trabajador_lenguajeDTO> dtoList =
-                    lenguajesPorTrabajador.stream().map(trabajadorLenguajeDTOConverter::convertToDTO).collect(Collectors.toList());
+                    trabajadoresPorLenguaje.stream().map(trabajadorLenguajeDTOConverter::convertToDTO).collect(Collectors.toList());
             return ResponseEntity.ok(dtoList);
         }
     }

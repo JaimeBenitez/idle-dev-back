@@ -12,7 +12,7 @@ public class CrearTrabajador_lenguajeDTO {
 
     private String nivel;
 
-    private Long experiencia_lenguaje;
+    private Float experiencia_lenguaje;
 
 
 

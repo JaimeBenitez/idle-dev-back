@@ -34,5 +34,5 @@ public class Trabajador_lenguaje {
     @Column(name="nivel")
     private Nivel nivel;
 
-    private Long experiencia_lenguaje;
+    private Float experiencia_lenguaje = 0f;
 }
