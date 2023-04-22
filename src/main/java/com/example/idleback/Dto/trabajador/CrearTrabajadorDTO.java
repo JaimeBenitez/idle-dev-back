@@ -12,4 +12,6 @@ public class CrearTrabajadorDTO {
     private Long partidaId;
 
     private Float generacion_pa;
+
+    private Character sexo;
 }

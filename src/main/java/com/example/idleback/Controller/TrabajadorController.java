@@ -94,6 +94,7 @@ public class TrabajadorController {
         nTrabajador.setPartida(partida);
         nTrabajador.setNombre(nuevo.getNombre());
         nTrabajador.setGeneracion_pa(nuevo.getGeneracion_pa());
+        nTrabajador.setSexo(nuevo.getSexo());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(trabajadorRepositorio.save(nTrabajador));
     }

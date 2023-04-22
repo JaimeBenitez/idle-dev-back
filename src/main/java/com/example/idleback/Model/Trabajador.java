@@ -41,6 +41,8 @@ public class Trabajador implements Serializable {
 
     private Float generacion_pa;
 
+    private Character sexo;
+
     @JsonManagedReference
     @OneToMany(mappedBy = "trabajador")
     private List<Trabajador_mejora> mejoras;
