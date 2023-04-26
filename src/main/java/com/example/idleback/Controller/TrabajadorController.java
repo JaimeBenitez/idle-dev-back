@@ -10,10 +10,14 @@ import com.example.idleback.Model.*;
 import com.example.idleback.Repositorios.EmpresaPartidaRepositorio;
 import com.example.idleback.Repositorios.PartidaRepositorio;
 import com.example.idleback.Repositorios.TrabajadorRepositorio;
+import com.example.idleback.Upload.StorageService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,6 +33,8 @@ public class TrabajadorController {
     private final PartidaRepositorio partidaRepositorio;
 
     private final EmpresaPartidaRepositorio empresaPartidaRepositorio;
+
+    private final StorageService storageService;
 
 
     /**
@@ -87,14 +93,24 @@ public class TrabajadorController {
      * @param nuevo
      * @return trabajador insertado
      */
-    @PostMapping("/trabajador")
-    public ResponseEntity<?> newWorker(@RequestBody CrearTrabajadorDTO nuevo){
+    @PostMapping(value ="/trabajador", consumes= MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> newWorker(@RequestPart("nuevo") CrearTrabajadorDTO nuevo,
+                                       @RequestPart("file") MultipartFile file){
+
+        String urlImagen = null;
+
+        if(!file.isEmpty()){
+            String imagen = storageService.store(file);
+            urlImagen = MvcUriComponentsBuilder.fromMethodName(FicherosController.class, "serveFile", imagen, null)
+                    .build().toUriString();
+        }
         Trabajador nTrabajador = new Trabajador();
         Partida partida = partidaRepositorio.findById(nuevo.getPartidaId()).orElse(null);
         nTrabajador.setPartida(partida);
         nTrabajador.setNombre(nuevo.getNombre());
         nTrabajador.setGeneracion_pa(nuevo.getGeneracion_pa());
         nTrabajador.setSexo(nuevo.getSexo());
+        nTrabajador.setImagen(urlImagen);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(trabajadorRepositorio.save(nTrabajador));
     }

@@ -43,6 +43,8 @@ public class Trabajador implements Serializable {
 
     private Character sexo;
 
+    private String imagen;
+
     @JsonManagedReference
     @OneToMany(mappedBy = "trabajador")
     private List<Trabajador_mejora> mejoras;
