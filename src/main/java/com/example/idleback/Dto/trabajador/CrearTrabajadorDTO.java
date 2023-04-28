@@ -15,5 +15,4 @@ public class CrearTrabajadorDTO {
 
     private Character sexo;
 
-    private String imagen;
 }
