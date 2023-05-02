@@ -2,15 +2,14 @@ package com.example.idleback.Controller;
 
 import com.example.idleback.Dto.lenguaje.LenguajeDTO;
 import com.example.idleback.Dto.converter.LenguajeDTOConverter;
+import com.example.idleback.Dto.lenguaje.LogoLenguajeDTO;
 import com.example.idleback.Error.LenguajeNotFoundException;
 import com.example.idleback.Model.Lenguaje;
 import com.example.idleback.Model.Mejora;
 import com.example.idleback.Repositorios.LenguajeRepositorio;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -64,5 +63,17 @@ public class LenguajeController {
     public List<Mejora> getLanguageUpgrades(@PathVariable Long id){
         Lenguaje lenguaje = lenguajeRepositorio.findById(id).orElseThrow(() -> new LenguajeNotFoundException(id));
         return lenguaje.getMejoras();
+    }
+    /**
+     * Funcion unica y exclusivamente para meter los logos
+     * @param id
+     * return lenguaje actualizado o 404 si no se encuentra
+     */
+    @PutMapping("lenguaje/{id}")
+    public Lenguaje putLanguageLogo(@RequestBody LogoLenguajeDTO logo , @PathVariable Long id){
+            return lenguajeRepositorio.findById(id).map(l -> {
+                l.setLogo("http://localhost:8080/languages/" + logo.getLogo() + ".svg");
+                return lenguajeRepositorio.save(l);
+            }).orElseThrow(()-> new LenguajeNotFoundException(id));
     }
 }
