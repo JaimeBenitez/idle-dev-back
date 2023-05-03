@@ -72,6 +72,7 @@ public class LenguajeController {
     @PutMapping("lenguaje/{id}")
     public Lenguaje putLanguageLogo(@RequestBody LogoLenguajeDTO logo , @PathVariable Long id){
             return lenguajeRepositorio.findById(id).map(l -> {
+                //Lo haremos de manera que lo unico que le pasamos es el nombre del logo
                 l.setLogo("http://localhost:8080/languages/" + logo.getLogo() + ".svg");
                 return lenguajeRepositorio.save(l);
             }).orElseThrow(()-> new LenguajeNotFoundException(id));

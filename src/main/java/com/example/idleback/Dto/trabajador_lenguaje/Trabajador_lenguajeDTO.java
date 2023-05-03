@@ -10,6 +10,8 @@ public class Trabajador_lenguajeDTO {
 
     private Long lenguajeId;
 
+    private String lenguajeLogo;
+
     private String trabajadorNombre;
 
     private String lenguajeNombre;
