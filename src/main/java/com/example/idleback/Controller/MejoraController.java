@@ -1,5 +1,6 @@
 package com.example.idleback.Controller;
 
+import com.example.idleback.Dto.mejora.LogoMejoraDTO;
 import com.example.idleback.Dto.mejora.MejoraDTO;
 import com.example.idleback.Dto.converter.MejoraDTOConverter;
 import com.example.idleback.Error.MejoraNotFoundException;
@@ -7,9 +8,8 @@ import com.example.idleback.Model.Mejora;
 import com.example.idleback.Repositorios.MejoraRepositorio;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,5 +50,18 @@ public class MejoraController {
 
         return mejoraRepositorio.findById(id)
                 .orElseThrow(() -> new MejoraNotFoundException(id));
+    }
+    /**
+     * Funcion unica y exclusivamente para meter los logos
+     * @param id
+     * return mejora actualizada o 404 si no se encuentra
+     */
+    @PutMapping("mejora/{id}")
+    public Mejora putUpgradeLogo(@RequestBody LogoMejoraDTO logo , @PathVariable Long id){
+        return mejoraRepositorio.findById(id).map(u -> {
+            //Lo haremos de manera que lo unico que le pasamos es el nombre del logo
+            u.setLogo("http://localhost:8080/upgrades/" + logo.getLogo() + ".svg");
+            return mejoraRepositorio.save(u);
+        }).orElseThrow(()-> new MejoraNotFoundException(id));
     }
 }
