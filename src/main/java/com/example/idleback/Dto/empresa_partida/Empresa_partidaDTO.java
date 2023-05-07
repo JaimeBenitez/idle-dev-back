@@ -9,6 +9,8 @@ import java.util.List;
 @Getter @Setter
 public class Empresa_partidaDTO {
 
+    private Long id;
+
     private Long partidaId;
 
     private String empresaNombre;
