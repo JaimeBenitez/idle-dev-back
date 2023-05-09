@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter @Setter
 public class ModPartidaDTO {
 
-    private Float dinero;
+    private Double dinero;
 
 }

@@ -21,7 +21,7 @@ public class Partida {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Float dinero = 0f;
+    private Double dinero = 0d;
 
     @OneToOne( mappedBy = "partida")
     private Usuario usuario;

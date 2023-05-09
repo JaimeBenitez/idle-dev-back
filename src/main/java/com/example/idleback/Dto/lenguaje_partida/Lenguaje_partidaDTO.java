@@ -10,7 +10,7 @@ public class Lenguaje_partidaDTO {
 
     private Long partidaId;
 
-    private Float partidaDinero;
+    private Double partidaDinero;
 
     private String lenguajeNombre;
 

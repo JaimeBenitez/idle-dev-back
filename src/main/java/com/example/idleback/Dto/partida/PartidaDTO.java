@@ -11,7 +11,7 @@ public class PartidaDTO {
 
     private String usuarioNombre;
 
-    private Float dinero;
+    private Double dinero;
 
 
 
