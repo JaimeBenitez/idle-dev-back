@@ -6,7 +6,6 @@ import lombok.Setter;
 @Getter @Setter
 public class CrearTrabajadorDTO {
 
-
     private String nombre;
 
     private Long partidaId;

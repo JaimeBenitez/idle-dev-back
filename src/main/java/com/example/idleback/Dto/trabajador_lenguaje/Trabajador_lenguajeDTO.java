@@ -6,6 +6,8 @@ import lombok.Setter;
 @Getter @Setter
 public class Trabajador_lenguajeDTO {
 
+    private Long id;
+
     private Long trabajadorId;
 
     private Long lenguajeId;
