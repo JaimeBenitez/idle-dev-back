@@ -35,19 +35,17 @@ public class TrabajadorLenguajeController {
      * Obtenemos una lista de todos los lenguajes con un trabajador concreto
      *
      * @param id
-     * @return Error 404 si no encuentra el trabajador
+     * @return Array vacio si no encuentra
      */
     @GetMapping("trabajador/{id}/lenguajes")
     public ResponseEntity<List<?>> getLanguagesByWorker(@PathVariable Long id){
         List<Trabajador_lenguaje> lenguajesPorTrabajador = trabajadorLenguajeRepositorio.findAllByTrabajador_Id(id);
 
-        if(lenguajesPorTrabajador.isEmpty()){
-            throw new LenguajeNotFoundException(id);
-        }else {
-            List<Trabajador_lenguajeDTO> dtoList =
-                    lenguajesPorTrabajador.stream().map(trabajadorLenguajeDTOConverter::convertToDTO).collect(Collectors.toList());
-            return ResponseEntity.ok(dtoList);
-        }
+
+        List<Trabajador_lenguajeDTO> dtoList =
+                lenguajesPorTrabajador.stream().map(trabajadorLenguajeDTOConverter::convertToDTO).collect(Collectors.toList());
+        return ResponseEntity.ok(dtoList);
+
     }
 
     /**

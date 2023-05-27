@@ -6,17 +6,19 @@ import lombok.Setter;
 @Getter @Setter
 public class Trabajador_mejoraDTO {
 
+    private String mejoraLenguajeNombre;
+
     private String trabajadorNombre;
 
     private String mejoraNombre;
 
     private String mejoraDescripcion;
 
-    private Float mejoraMejora_generacion;
+    private Boolean mejoraMejora_generacion;
 
-    private Float mejoraDescuento_compra;
+    private Boolean mejoraDescuento_compra;
 
-    private Float mejoraExtra_pa;
+    private Boolean mejoraExtra_pa;
 
     private String mejoraLogo;
 

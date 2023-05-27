@@ -16,11 +16,11 @@ public class MejoraDTO {
 
     private String nivel_desbloqueo;
 
-    private Float mejora_generacion;
+    private Boolean mejora_generacion;
 
-    private Float descuento_compra;
+    private Boolean descuento_compra;
 
-    private Float extra_pa;
+    private Boolean extra_pa;
 
     private String logo;
 
