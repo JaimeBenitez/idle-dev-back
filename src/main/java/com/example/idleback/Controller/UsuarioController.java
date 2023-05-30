@@ -1,6 +1,7 @@
 package com.example.idleback.Controller;
 
 import com.example.idleback.Dto.usuario.CrearUsuarioDTO;
+import com.example.idleback.Dto.usuario.ModUsuarioDTO;
 import com.example.idleback.Dto.usuario.UsuarioDTO;
 import com.example.idleback.Dto.converter.UsuarioDTOConverter;
 import com.example.idleback.Error.UsuarioIdNotFoundException;
@@ -103,17 +104,9 @@ public class UsuarioController {
      * @return usuario actualizado, 404 si no se encuentra el usuario
      */
     @PutMapping("/usuario/{id}")
-    public Usuario updateUser(@RequestBody CrearUsuarioDTO nuevo, @PathVariable Long id) {
-        Partida partida= null;
-        if(nuevo.getPartidaId() != null){
-            partida = partidaRepositorio.findById(nuevo.getPartidaId()).orElse(null);
-        }
-        //Para que lo admita la lambda la variable debe ser final, asi que todas las comprobaciones las debemos hacer en
-        //otra variable
-        final Partida nPartida = partida;
+    public Usuario updateUser(@RequestBody ModUsuarioDTO nuevo, @PathVariable Long id) {
 
         return usuarioRepositorio.findById(id).map(u -> {
-            u.setPartida(nPartida);
             u.setNombre(nuevo.getNombre());
             u.setEmail(nuevo.getEmail());
             u.setContrasenia(nuevo.getContrasenia());
