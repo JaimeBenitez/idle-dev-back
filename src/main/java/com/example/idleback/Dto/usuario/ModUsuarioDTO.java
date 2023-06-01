@@ -11,6 +11,4 @@ public class ModUsuarioDTO {
     private String email;
 
     private String contrasenia;
-
-    private String avatar;
 }

@@ -14,5 +14,4 @@ public class CrearUsuarioDTO {
 
     private String contrasenia;
 
-    private String avatar;
 }

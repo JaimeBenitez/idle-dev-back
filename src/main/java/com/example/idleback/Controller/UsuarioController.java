@@ -10,12 +10,18 @@ import com.example.idleback.Model.Partida;
 import com.example.idleback.Model.Usuario;
 import com.example.idleback.Repositorios.PartidaRepositorio;
 import com.example.idleback.Repositorios.UsuarioRepositorio;
+import com.example.idleback.Upload.StorageService;
 import lombok.AllArgsConstructor;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -27,6 +33,8 @@ public class UsuarioController {
     private final UsuarioDTOConverter usuarioDTOConverter;
 
     private final PartidaRepositorio partidaRepositorio;
+
+    private final StorageService storageService;
 
 
     /**
@@ -78,10 +86,17 @@ public class UsuarioController {
      * @param nuevo
      * @return usuario insertado
      */
-    @PostMapping("/usuario")
-    public ResponseEntity<?> newUser(@RequestBody CrearUsuarioDTO nuevo){
+    @PostMapping(value="/usuario", consumes= MediaType.MULTIPART_FORM_DATA_VALUE )
+    public ResponseEntity<?> newUser(@RequestPart("nuevo") CrearUsuarioDTO nuevo,@RequestPart(value = "file") MultipartFile file){
         Usuario nUsuario = new Usuario();
         Partida partida = null;
+        String urlAvatar = null;
+
+        if(!file.isEmpty()){
+            String avatar = storageService.store(file);
+            urlAvatar = MvcUriComponentsBuilder.fromMethodName(FicherosController.class, "serveFile", avatar,null)
+                    .build().toUriString();
+        }
         //Para poder meter el repositorio completo necesitamos buscarlo usando la id que le pasamos en el DTO
         //Para poder considerar un equipo como nulo tenemos que comprobar antes de hacer el findById
         if(nuevo.getPartidaId() != null){
@@ -91,7 +106,7 @@ public class UsuarioController {
         nUsuario.setNombre(nuevo.getNombre());
         nUsuario.setEmail(nuevo.getEmail());
         nUsuario.setContrasenia(nuevo.getContrasenia());
-        nUsuario.setAvatar(nuevo.getAvatar());
+        nUsuario.setAvatar(urlAvatar);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepositorio.save(nUsuario));
     }
@@ -103,14 +118,22 @@ public class UsuarioController {
      * @param id
      * @return usuario actualizado, 404 si no se encuentra el usuario
      */
-    @PutMapping("/usuario/{id}")
-    public Usuario updateUser(@RequestBody ModUsuarioDTO nuevo, @PathVariable Long id) {
+    @PutMapping(value="/usuario/{id}", consumes= MediaType.MULTIPART_FORM_DATA_VALUE)
+    public Usuario updateUser( @RequestPart("nuevo") ModUsuarioDTO nuevo, @RequestPart("file") MultipartFile file, @PathVariable Long id) {
+
+        String urlAvatar = null;
+        if(!file.isEmpty()){
+            String avatar = storageService.store(file);
+            urlAvatar = MvcUriComponentsBuilder.fromMethodName(FicherosController.class, "serveFile", avatar,null)
+                    .build().toUriString();
+        }
+        final String avatar = urlAvatar;
 
         return usuarioRepositorio.findById(id).map(u -> {
             u.setNombre(nuevo.getNombre());
             u.setEmail(nuevo.getEmail());
             u.setContrasenia(nuevo.getContrasenia());
-            u.setAvatar(nuevo.getAvatar());
+            u.setAvatar(avatar);
             return usuarioRepositorio.save(u);
         }).orElseThrow(() -> new UsuarioIdNotFoundException(id));
     }
