@@ -87,15 +87,16 @@ public class UsuarioController {
      * @return usuario insertado
      */
     @PostMapping(value="/usuario", consumes= MediaType.MULTIPART_FORM_DATA_VALUE )
-    public ResponseEntity<?> newUser(@RequestPart("nuevo") CrearUsuarioDTO nuevo,@RequestPart(value = "file") MultipartFile file){
+    public ResponseEntity<?> newUser(@RequestPart("nuevo") CrearUsuarioDTO nuevo,@RequestPart(value = "file", required = false) MultipartFile file){
         Usuario nUsuario = new Usuario();
         Partida partida = null;
         String urlAvatar = null;
 
-        if(!file.isEmpty()){
+        if(file != null){
             String avatar = storageService.store(file);
             urlAvatar = MvcUriComponentsBuilder.fromMethodName(FicherosController.class, "serveFile", avatar,null)
                     .build().toUriString();
+            nUsuario.setAvatar(urlAvatar);
         }
         //Para poder meter el repositorio completo necesitamos buscarlo usando la id que le pasamos en el DTO
         //Para poder considerar un equipo como nulo tenemos que comprobar antes de hacer el findById
@@ -106,7 +107,7 @@ public class UsuarioController {
         nUsuario.setNombre(nuevo.getNombre());
         nUsuario.setEmail(nuevo.getEmail());
         nUsuario.setContrasenia(nuevo.getContrasenia());
-        nUsuario.setAvatar(urlAvatar);
+
 
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepositorio.save(nUsuario));
     }
@@ -119,13 +120,21 @@ public class UsuarioController {
      * @return usuario actualizado, 404 si no se encuentra el usuario
      */
     @PutMapping(value="/usuario/{id}", consumes= MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Usuario updateUser( @RequestPart("nuevo") ModUsuarioDTO nuevo, @RequestPart("file") MultipartFile file, @PathVariable Long id) {
+    public Usuario updateUser( @RequestPart("nuevo") ModUsuarioDTO nuevo, @RequestPart(name="file", required = false) MultipartFile file, @PathVariable Long id) {
 
         String urlAvatar = null;
-        if(!file.isEmpty()){
+        if(file != null) {
+
             String avatar = storageService.store(file);
-            urlAvatar = MvcUriComponentsBuilder.fromMethodName(FicherosController.class, "serveFile", avatar,null)
+            urlAvatar = MvcUriComponentsBuilder.fromMethodName(FicherosController.class, "serveFile", avatar, null)
                     .build().toUriString();
+        }else{
+            return usuarioRepositorio.findById(id).map(u -> {
+                u.setNombre(nuevo.getNombre());
+                u.setEmail(nuevo.getEmail());
+                u.setContrasenia(nuevo.getContrasenia());
+                return usuarioRepositorio.save(u);
+            }).orElseThrow(() -> new UsuarioIdNotFoundException(id));
         }
         final String avatar = urlAvatar;
 
