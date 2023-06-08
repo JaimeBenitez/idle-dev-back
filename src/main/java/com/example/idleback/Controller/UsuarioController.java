@@ -61,7 +61,7 @@ public class UsuarioController {
      */
     @GetMapping("usuario/{nombre}")
     public UsuarioDTO getUserById(@PathVariable String nombre){
-        Usuario user = usuarioRepositorio.findByNombre(nombre);
+        Usuario user = usuarioRepositorio.findByNombre(nombre).orElse(null);
         if(user == null){
             throw new UsuarioNameNotFoundException(nombre);
         }
@@ -80,37 +80,7 @@ public class UsuarioController {
         }
     }
 
-    /**
-     * Creamos un nuevo usuario
-     *
-     * @param nuevo
-     * @return usuario insertado
-     */
-    @PostMapping(value="/usuario", consumes= MediaType.MULTIPART_FORM_DATA_VALUE )
-    public ResponseEntity<?> newUser(@RequestPart("nuevo") CrearUsuarioDTO nuevo,@RequestPart(value = "file", required = false) MultipartFile file){
-        Usuario nUsuario = new Usuario();
-        Partida partida = null;
-        String urlAvatar = null;
 
-        if(file != null){
-            String avatar = storageService.store(file);
-            urlAvatar = MvcUriComponentsBuilder.fromMethodName(FicherosController.class, "serveFile", avatar,null)
-                    .build().toUriString();
-            nUsuario.setAvatar(urlAvatar);
-        }
-        //Para poder meter el repositorio completo necesitamos buscarlo usando la id que le pasamos en el DTO
-        //Para poder considerar un equipo como nulo tenemos que comprobar antes de hacer el findById
-        if(nuevo.getPartidaId() != null){
-            partida = partidaRepositorio.findById(nuevo.getPartidaId()).orElse(null);
-        }
-        nUsuario.setPartida(partida);
-        nUsuario.setNombre(nuevo.getNombre());
-        nUsuario.setEmail(nuevo.getEmail());
-        nUsuario.setContrasenia(nuevo.getContrasenia());
-
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepositorio.save(nUsuario));
-    }
 
     /**
      * Actualizamos un usuario

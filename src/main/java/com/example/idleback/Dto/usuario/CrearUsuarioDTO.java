@@ -6,8 +6,6 @@ import lombok.Setter;
 @Getter @Setter
 public class CrearUsuarioDTO {
 
-    private Long partidaId;
-
     private String nombre;
 
     private String email;

@@ -28,4 +28,5 @@ public class Usuario {
     private String contrasenia;
 
     private String avatar;
+
 }
