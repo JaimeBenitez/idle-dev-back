@@ -16,6 +16,7 @@ import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
@@ -35,6 +36,8 @@ public class UsuarioController {
     private final PartidaRepositorio partidaRepositorio;
 
     private final StorageService storageService;
+
+    private PasswordEncoder bcryptEncoder;
 
 
     /**
@@ -91,30 +94,24 @@ public class UsuarioController {
      */
     @PutMapping(value="/usuario/{id}", consumes= MediaType.MULTIPART_FORM_DATA_VALUE)
     public Usuario updateUser( @RequestPart("nuevo") ModUsuarioDTO nuevo, @RequestPart(name="file", required = false) MultipartFile file, @PathVariable Long id) {
-
+        Usuario user = usuarioRepositorio.findById(id).orElseThrow(() -> new UsuarioIdNotFoundException(id));
         String urlAvatar = null;
+        user.setNombre(nuevo.getNombre());
+        user.setEmail(nuevo.getEmail());
+
         if(file != null) {
 
             String avatar = storageService.store(file);
             urlAvatar = MvcUriComponentsBuilder.fromMethodName(FicherosController.class, "serveFile", avatar, null)
                     .build().toUriString();
-        }else{
-            return usuarioRepositorio.findById(id).map(u -> {
-                u.setNombre(nuevo.getNombre());
-                u.setEmail(nuevo.getEmail());
-                u.setContrasenia(nuevo.getContrasenia());
-                return usuarioRepositorio.save(u);
-            }).orElseThrow(() -> new UsuarioIdNotFoundException(id));
+            user.setAvatar(urlAvatar);
         }
-        final String avatar = urlAvatar;
+        if(nuevo.getContrasenia() != ""){
+            user.setContrasenia(bcryptEncoder.encode(nuevo.getContrasenia()));
+        }
 
-        return usuarioRepositorio.findById(id).map(u -> {
-            u.setNombre(nuevo.getNombre());
-            u.setEmail(nuevo.getEmail());
-            u.setContrasenia(nuevo.getContrasenia());
-            u.setAvatar(avatar);
-            return usuarioRepositorio.save(u);
-        }).orElseThrow(() -> new UsuarioIdNotFoundException(id));
+        return usuarioRepositorio.save(user);
+
     }
 
     //No esta contemplada la posibilidad de borrar usuarios
