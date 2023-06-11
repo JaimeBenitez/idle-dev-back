@@ -102,8 +102,12 @@ public class UsuarioController {
         if(file != null) {
 
             String avatar = storageService.store(file);
+            //Local
+            //urlAvatar = MvcUriComponentsBuilder.fromMethodName(FicherosController.class, "serveFile", avatar, null)
+            //       .build().toUriString();
+            //Production
             urlAvatar = MvcUriComponentsBuilder.fromMethodName(FicherosController.class, "serveFile", avatar, null)
-                    .build().toUriString();
+                    .scheme("https").build().toUriString();
             user.setAvatar(urlAvatar);
         }
         if(nuevo.getContrasenia() != ""){
