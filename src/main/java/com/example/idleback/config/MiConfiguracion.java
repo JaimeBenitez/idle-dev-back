@@ -19,7 +19,7 @@ public class MiConfiguracion {
         @Override
             public void addCorsMappings(CorsRegistry registry){
                     registry.addMapping("/**")
-                            .allowedOrigins("http://localhost:8081","https://idle-dev.netlify.app")
+                            .allowedOrigins("http://localhost:8080","http://localhost:8081","https://idle-dev.netlify.app")
                     .allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
                             .allowCredentials(true);
         }
