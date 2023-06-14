@@ -68,9 +68,18 @@ Esta api se encuentra desplegada en railway y asegurada mediante seguridad JWT, 
 
 | Endpoint                                  | Resultado                                                               | Método   |
 |------------------------------------------ |-------------------------------------------------------------------------|:--------:|
-|`/clasificacion`                           | Muestra todos los usuarios(vendrá bien para una posible clasificación)  | GET      |
-|`/usuario/{id}`                            | Muestra un usuario concreto                                             | GET      |
+|`/usuarios`                                | Muestra todos los usuarios                                              | GET      |
+|`/usuario/{nombre}`                        | Muestra un usuario concreto. Funciona con el nombre de usuario          | GET      |
 |`/usuario/{id}`                            | Actualiza los datos de un usuario(p.e. cambio contraseña)               | PUT      |
+
+### Partidas
+
+| Endpoint                                  | Resultado                                                               | Método   |
+|------------------------------------------ |-------------------------------------------------------------------------|:--------:|
+|`/clasificacion`                           | Muestra la clasificacion de partidas                                    | GET      |
+|`/partida/{id}`                            | Muestra una partida concreta                                            | GET      |
+|`/partida`                                 | Crea una nueva partida                                                  | POST     |
+|`/partida/{id}`                            | Actualiza los datos de una partida                                      | PUT      |
 
 ### Trabajador-lenguaje
 
