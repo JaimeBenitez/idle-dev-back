@@ -33,66 +33,87 @@ Esta api se encuentra desplegada en railway y asegurada mediante seguridad JWT, 
 
 ## Endpoints
 
+### Autenticación
 
+| Endpoint                                  | Resultado                                                               | Método   |
+|------------------------------------------ |-------------------------------------------------------------------------|:--------:|
+|`/login`                                   | Realiza el login y si es correcto devuelve un token                     | POST     |
+|`/registro`                                | Función de registro de usuario                                          | POST     |
+
+### Empresas
 
 | Endpoint                                  | Resultado                                                               | Método   |
 |------------------------------------------ |-------------------------------------------------------------------------|:--------:|
 |`/empresas`                                | Muestra todas las empresas                                              | GET      |
 |`/empresa/{id}`                            | Muestra una empresa concreta                                            | GET      |
 
-
+### Mejoras
 
 | Endpoint                                  | Resultado                                                               | Método   |
 |------------------------------------------ |-------------------------------------------------------------------------|:--------:|
 |`/mejoras`                                 | Muestra todas las mejoras                                               | GET      |
 |`/mejora/{id}`                             | Muestra una mejora concreta                                             | GET      |
+|`/mejora/{id}`                             | Solo para la subida de logos a la BD                                    | PUT      |
  
-
+### Lenguajes
 
 | Endpoint                                  | Resultado                                                               | Método   |
 |------------------------------------------ |-------------------------------------------------------------------------|:--------:|
 |`/lenguajes`                               | Muestra todos los lenguajes                                             | GET      |
 |`/lenguaje/{id}`                           | Muestra un lenguaje concreto                                            | GET      |
 |`/lenguaje/{id}/mejoras`                   | Muestra las mejoras de un lenguaje concreto                             | GET      |
+|`/lenguaje/{id}`                           | Solo para la subida de logos a la BD                                    | PUT      |
 
-
+### Usuarios
 
 | Endpoint                                  | Resultado                                                               | Método   |
 |------------------------------------------ |-------------------------------------------------------------------------|:--------:|
 |`/usuarios`                                | Muestra todos los usuarios(vendrá bien para una posible clasificación)  | GET      |
 |`/usuario/{id}`                            | Muestra un usuario concreto                                             | GET      |
-|`/usuario/{id}`                            | Añade un nuevo usuario(registro)                                        | POST     |
 |`/usuario/{id}`                            | Actualiza los datos de un usuario(p.e. cambio contraseña)               | PUT      |
 
+### Trabajador-lenguaje
 
 | Endpoint                                  | Resultado                                                               | Método   |
 |------------------------------------------ |-------------------------------------------------------------------------|:--------:|
 |`/lenguaje/{id}/trabajadores`              | Muestra todos los trabajadores de un lenguaje concreto                  | GET      |
+|`/trabajador/{id}/lenguajes`               | Muestra todos los lenguajes de un trabajador concreto                   | GET      |
+|`/trabajador-lenguaje`                     | Crea una nueva relación                                                 | POST     |
+|`/trabajador-lenguaje/{id}`                | Actualiza la relación                                                   | PUT      |
+
+### Trabajador
 
 | Endpoint                                  | Resultado                                                               | Método   |
 |------------------------------------------ |-------------------------------------------------------------------------|:--------:|
 |`/trabajador`                              | Muestra todos los trabajadores                                          | GET      |
 |`/trabajador/{id}`                         | Muestra un trabajador concreto                                          | GET      |
+|`/trabajadores/{partidaId}`                | Muestra todos los trabajadores de una partida                           | GET      |
 |`/trabajador/{id}`                         | Añade un nuevo trabajador                                               | POST     |
 |`/trabajador/{id}`                         | Actualiza los datos de un usuario(p.e. las mejoras adquiridas)          | PUT      |
 
+### Lenguaje-partida 
 
 | Endpoint                                  | Resultado                                                               | Método   |
 |------------------------------------------ |-------------------------------------------------------------------------|:--------:|
-|`/lenguajePorPartida/{id}`                 | Crea un nuevo registro de lenguaje en una partida                       | POST     |
-|`/lenguajePorPartida/{id}`                 | Actualiza la informacion de un lenguaje en una partida (Guardar Partida)| PUT      |
+|`/partida/{id}/lenguajes`                  | Muestra los lenguajes de una partida                                    | GET      |
+|`/lenguaje-partida`                        | Crea un nuevo registro de lenguaje en una partida                       | POST     |
+|`/lenguaje-partida/{id}`                   | Actualiza la informacion de un lenguaje en una partida                  | PUT      |
 
+### Empresa-partida
 
 | Endpoint                                  | Resultado                                                               | Método   |
 |------------------------------------------ |-------------------------------------------------------------------------|:--------:|
-|`/empresaPorPartida/{id}`                  | Crea un nuevo registro de empresa en una partida                        | POST     |
-|`/empresaPorPartida/{id}`                  | Actualiza la informacion de una empresa en una partida (Guardar partida)| PUT      |
+|`/partida/{id}/empresas`                   | Muestra las empresas de una partida                                     | GET      |
+|`/empresa-partida/{id}`                    | Crea un nuevo registro de empresa en una partida                        | POST     |
+|`/empresa-partida/{id}`                    | Actualiza la informacion de una empresa en una partida                  | PUT      |
 
+### Trabajador-mejora
 
 | Endpoint                                  | Resultado                                                                | Método   |
 |------------------------------------------ |--------------------------------------------------------------------------|:--------:|
-|`/trabajadorPorPartida/{id}`               | Crea un nuevo registro de trabajador en un lenguaje                      | POST     |
-|`/trabajadorPorPartida/{id}`               | Actualiza la informacion de un trabajador en un lenguaje(Guardar partida)| PUT      |
+|`/trabajador/{id}/mejoras`                 | Muestra las mejoras de un trabajor                                       | GET      |
+|`/trabajador-mejora`                       | Crea un nuevo registro de mejora en un trabajador                        | POST     |
+|`/trabajador-mejora/{id}`                  | Actualiza la informacion de una mejora en un trabajador                  | PUT      |
 
 
 
