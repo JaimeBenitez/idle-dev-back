@@ -2,7 +2,7 @@
 
 [![Desarrollo Web en Entorno Cliente](https://img.shields.io/badge/PROYECTO-blue?style=for-the-badge)](https://iesrafaelalberti.es/c-f-g-s-desarrollo-de-aplicaciones-web/)
 
-![Logo](/src/assets/idledev-logo.png)
+![Logo](idledev-logo.png)
 
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 [![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D)](https://vuejs.org/)
