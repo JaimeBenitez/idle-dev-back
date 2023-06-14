@@ -68,7 +68,7 @@ Esta api se encuentra desplegada en railway y asegurada mediante seguridad JWT, 
 
 | Endpoint                                  | Resultado                                                               | Método   |
 |------------------------------------------ |-------------------------------------------------------------------------|:--------:|
-|`/usuarios`                                | Muestra todos los usuarios(vendrá bien para una posible clasificación)  | GET      |
+|`/clasificacion`                           | Muestra todos los usuarios(vendrá bien para una posible clasificación)  | GET      |
 |`/usuario/{id}`                            | Muestra un usuario concreto                                             | GET      |
 |`/usuario/{id}`                            | Actualiza los datos de un usuario(p.e. cambio contraseña)               | PUT      |
 
