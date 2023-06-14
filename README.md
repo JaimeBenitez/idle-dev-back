@@ -127,11 +127,6 @@ Esta api se encuentra desplegada en railway y asegurada mediante seguridad JWT, 
 
 
 
-| Endpoint                                  | Resultado                                                                             | Método   |
-|------------------------------------------ |---------------------------------------------------------------------------------------|:--------:|
-|`/partida/{id}`                            | Aqui se recuperarán los datos de una partida, es aqui donde se usara el DTO completo  | GET      |
-|`/partida/{id}`                            | Crea  los datos de una partida nueva                                                  | POST     |
-|`/partida/{id}`                            | Actualiza la informacion de una partida(Guardar partida)                              | PUT      |
 
 
 
