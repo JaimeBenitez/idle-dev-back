@@ -96,7 +96,6 @@ public class UsuarioController {
     public Usuario updateUser( @RequestPart("nuevo") ModUsuarioDTO nuevo, @RequestPart(name="file", required = false) MultipartFile file, @PathVariable Long id) {
         Usuario user = usuarioRepositorio.findById(id).orElseThrow(() -> new UsuarioIdNotFoundException(id));
         String urlAvatar = null;
-        user.setNombre(nuevo.getNombre());
         user.setEmail(nuevo.getEmail());
 
         if(file != null) {
